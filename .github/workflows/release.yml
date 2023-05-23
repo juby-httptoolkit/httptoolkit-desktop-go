@@ -1,0 +1,62 @@
+name: Release
+on:
+  push:
+    tags:
+      - v*
+
+permissions:
+  contents: write
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+
+    steps:
+      - name: Install Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: "1.20.4"
+      
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - uses: actions/cache@v3
+        with:
+          path: |
+            ~\AppData\Local\go-build
+            ~\go\pkg\mod
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-
+
+      - name: Setup MSYS2
+        uses: msys2/setup-msys2@v2
+        with:
+          location: D:\
+
+      - name: Install WebView2
+        shell: msys2 {0}
+        run: |
+          cd /d
+          mkdir webview2
+          cd webview2
+          curl -sSL "https://www.nuget.org/api/v2/package/Microsoft.Web.WebView2" | bsdtar -xvf-
+
+      - name: Build
+        shell: cmd
+        run: |
+          set Path=%Path%;D:\msys64\mingw64\bin
+          set CGO_CXXFLAGS=-ID:\webview2\build\native\include
+          go build -v -ldflags "-s -w -H=windowsgui" -o httptoolkit-desktop-go.exe .
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: build
+          path: httptoolkit-desktop-go.exe
+        
+      - name: Release
+        uses: softprops/action-gh-release@1e07f4398721186383de40550babbdf2b84acfc5 # v1
+        with:
+          name: ${{ github.ref_name }}
+          files: httptoolkit-desktop-go.exe

@@ -1,0 +1,8 @@
+github.com/go-ole/go-ole v1.2.4 h1:nNBDSCOigTSiarFpYE9J/KtEA1IOW4CNeqT9TQDqCxI=
+github.com/go-ole/go-ole v1.2.4/go.mod h1:XCwSNxSkXRo4vlyPy93sltvi/qJq0jqQhjqQNIwKuxM=
+github.com/google/uuid v1.1.1 h1:Gkbcsh/GbpXz7lPftLA3P6TYMwjCLYm83jiFQZF/3gY=
+github.com/google/uuid v1.1.1/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
+github.com/harry1453/go-common-file-dialog v1.2.0 h1:nGr9ZIpXrKb7IUY9Or6jqt4nuPEd/I+5sH1JPMsKhaM=
+github.com/harry1453/go-common-file-dialog v1.2.0/go.mod h1:3zwmbo7fy+uYGyaec74mu+Z9DPg0aEt10fSjjPwfyiY=
+github.com/webview/webview v0.0.0-20230415172654-8387ff8945fc h1:3LWOLV/SbVjPYCARWGcRpOKP30U/I6EP1v8PSIoh1aU=
+github.com/webview/webview v0.0.0-20230415172654-8387ff8945fc/go.mod h1:rpXAuuHgyEJb6kXcXldlkOjU6y4x+YcASKKXJNUhh0Y=
