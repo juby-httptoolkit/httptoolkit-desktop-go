@@ -8,8 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/harry1453/go-common-file-dialog/cfd"
-	"github.com/harry1453/go-common-file-dialog/cfdutil"
+	"github.com/sqweek/dialog"
 	"github.com/webview/webview"
 )
 
@@ -24,6 +23,7 @@ func main() {
 	w.SetTitle("HTTP Toolkit")
 	w.SetSize(1366, 768, webview.HintNone)
 	w.SetHtml("Setting up server..<script>window.onload=()=>_onload()</script>")
+	webkitFixes(w.Window())
 
 	w.Bind("_onload", func() {
 		go func() {
@@ -49,16 +49,13 @@ func main() {
 		}()
 	})
 
-	//goland:noinspection ALL
-	if platform == "win32" {
-		w.Bind("prompt", func(_ string) string {
-			result, err := cfdutil.ShowOpenFileDialog(cfd.DialogConfig{})
-			if err != cfd.ErrorCancelled {
-				fmt.Println(err)
-			}
-			return result
-		})
-	}
+	w.Bind("prompt", func(_ string) string {
+		result, err := dialog.File().Load()
+		if err != nil && err != dialog.ErrCancelled {
+			fmt.Println(err)
+		}
+		return result
+	})
 
 	w.Run()
 

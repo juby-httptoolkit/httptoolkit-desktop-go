@@ -2,7 +2,10 @@
 
 package main
 
-import "syscall"
+import (
+	"syscall"
+	"unsafe"
+)
 
 const (
 	binPath  = "bin/httptoolkit-server.cmd"
@@ -12,3 +15,5 @@ const (
 func hideWindow() {
 	cmd.SysProcAttr = &syscall.SysProcAttr{HideWindow: true}
 }
+
+func webkitFixes(_ unsafe.Pointer) {}

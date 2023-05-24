@@ -81,7 +81,7 @@ func extract(gzipStream io.Reader) error {
 				return fmt.Errorf("extract: Mkdir() failed: %w", err)
 			}
 		case tar.TypeReg:
-			outFile, err := os.Create(header.Name)
+			outFile, err := os.OpenFile(header.Name, os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0777)
 			if err != nil {
 				return fmt.Errorf("extract: Create() failed: %w", err)
 			}
