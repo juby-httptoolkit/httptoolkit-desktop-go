@@ -9,7 +9,7 @@ import (
 	"time"
 
 	"github.com/sqweek/dialog"
-	"github.com/webview/webview"
+	"github.com/webview/webview_go"
 )
 
 var (

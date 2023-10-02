@@ -3,20 +3,31 @@ package main
 import (
 	"archive/tar"
 	"compress/gzip"
+	"encoding/json"
 	"fmt"
 	"io"
 	"net/http"
 	"os"
 )
 
-const requiredVersion = "1.12.6"
+const requiredVersion = "1.14.3"
 
 func setupServer() error {
-	if _, err := os.Stat("httptoolkit-server/package.json"); err != nil {
-		if err = downloadServer(); err != nil {
-			return err
-		}
+	file, err := os.Open("httptoolkit-server/package.json")
+	if err != nil {
+		return downloadServer()
 	}
+	defer file.Close()
+
+	var pkg struct{ Version string }
+	if err = json.NewDecoder(file).Decode(&pkg); err != nil {
+		return downloadServer()
+	}
+
+	if pkg.Version != requiredVersion {
+		return downloadServer()
+	}
+
 	return nil
 }
 
@@ -77,8 +88,10 @@ func extract(gzipStream io.Reader) error {
 	for header, err = tarReader.Next(); err == nil; header, err = tarReader.Next() {
 		switch header.Typeflag {
 		case tar.TypeDir:
-			if err := os.Mkdir(header.Name, 0755); err != nil {
-				return fmt.Errorf("extract: Mkdir() failed: %w", err)
+			if _, err := os.Stat(header.Name); err != nil {
+				if err := os.Mkdir(header.Name, 0755); err != nil {
+					return fmt.Errorf("extract: Mkdir() failed: %w", err)
+				}
 			}
 		case tar.TypeReg:
 			outFile, err := os.OpenFile(header.Name, os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0777)

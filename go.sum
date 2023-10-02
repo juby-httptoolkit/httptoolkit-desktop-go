@@ -1,6 +1,6 @@
 github.com/TheTitanrain/w32 v0.0.0-20180517000239-4f5cfb03fabf h1:FPsprx82rdrX2jiKyS17BH6IrTmUBYqZa/CXT4uvb+I=
 github.com/TheTitanrain/w32 v0.0.0-20180517000239-4f5cfb03fabf/go.mod h1:peYoMncQljjNS6tZwI9WVyQB3qZS6u79/N3mBOcnd3I=
+github.com/juby-httptoolkit/webview_go v0.0.0-20231002110549-60cb34aae999 h1:U/aVWQQpndy9b1X0HDgZi+1iy11+O5DV1jaELPW5r+8=
+github.com/juby-httptoolkit/webview_go v0.0.0-20231002110549-60cb34aae999/go.mod h1:yE65LFCeWf4kyWD5re+h4XNvOHJEXOCOuJZ4v8l5sgk=
 github.com/sqweek/dialog v0.0.0-20220809060634-e981b270ebbf h1:pCxn3BCfu8n8VUhYl4zS1BftoZoYY0J4qVF3dqAQ4aU=
 github.com/sqweek/dialog v0.0.0-20220809060634-e981b270ebbf/go.mod h1:/qNPSY91qTz/8TgHEMioAUc6q7+3SOybeKczHMXFcXw=
-github.com/webview/webview v0.0.0-20230415172654-8387ff8945fc h1:3LWOLV/SbVjPYCARWGcRpOKP30U/I6EP1v8PSIoh1aU=
-github.com/webview/webview v0.0.0-20230415172654-8387ff8945fc/go.mod h1:rpXAuuHgyEJb6kXcXldlkOjU6y4x+YcASKKXJNUhh0Y=
