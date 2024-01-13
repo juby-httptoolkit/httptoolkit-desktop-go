@@ -10,7 +10,7 @@ import (
 	"os"
 )
 
-const requiredVersion = "1.14.3"
+const requiredVersion = "1.14.8"
 
 func setupServer() error {
 	file, err := os.Open("httptoolkit-server/package.json")

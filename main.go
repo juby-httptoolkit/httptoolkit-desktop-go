@@ -22,10 +22,10 @@ func main() {
 	defer w.Destroy()
 	w.SetTitle("HTTP Toolkit")
 	w.SetSize(1366, 768, webview.HintNone)
-	w.SetHtml("Setting up server..<script>window.onload=()=>_onload()</script>")
+	w.SetHtml("Setting up server..")
 	webkitFixes(w.Window())
 
-	w.Bind("_onload", func() {
+	w.Dispatch(func() {
 		go func() {
 			if err := setupServer(); err != nil {
 				w.Dispatch(func() {
